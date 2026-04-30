@@ -1,75 +1,254 @@
-.section { background: var(--bg); position: relative; z-index: 1; }
-
-.grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
-
-.info { padding-top: 8px; }
-
-.detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 24px; }
-
-.detailIcon {
-  width: 42px; height: 42px;
-  background: var(--navy); border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 17px; flex-shrink: 0;
+.section {
+  background: var(--bg);
+  position: relative;
+  z-index: 1;
 }
 
-.detail div strong { display: block; font-size: 11px; font-weight: 600; color: var(--text-primary); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
-.detail div span { font-size: 14px; color: var(--text-muted); }
+/* MAIN GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
 
+.info {
+  padding-top: 8px;
+  max-height: calc(100vh - 120px); /* 👈 keeps it within screen */
+}
+.section-desc {
+  margin-bottom: 24px !important; /* was 44px */
+}
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px; /* tighter */
+  margin-top: 10px;
+}
+
+.detail {
+  margin-bottom: 0;
+}
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ───────── MAP ───────── */
+.mapWrapper {
+  border-radius: 9999px;
+  padding-top: 20px;
+  width: 100%;
+  height: 220px; /* 👈 reduce this */
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ───────── CONTACT GRID (NEW) ───────── */
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.infoItem {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+
+  padding: 14px 16px;
+
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+
+  transition: all 0.25s ease;
+}
+
+.infoItem:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+
+/* ICON */
+.detailIcon {
+  width: 40px;
+  height: 40px;
+
+  background: var(--navy);
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* LABEL + TEXT */
+.label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.infoItem p:last-child {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ───────── FORM ───────── */
 .formBox {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 4px; padding: 44px 36px;
+  border-radius: 4px;
+  padding: 44px 36px;
 }
 
 .formTitle {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 26px; font-weight: 700; color: var(--text-primary); margin-bottom: 28px;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 28px;
 }
 
-.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
 
-.group { margin-bottom: 18px; }
+.group {
+  margin-bottom: 18px;
+}
 
 .group label {
-  display: block; font-size: 11px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--text-primary); margin-bottom: 7px;
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 7px;
 }
 
 .group input,
 .group select,
 .group textarea {
-  width: 100%; padding: 13px 14px;
-  border: 1px solid var(--border); border-radius: 2px;
-  font-family: 'Jost', sans-serif; font-size: 14px;
-  color: var(--text-primary); background: var(--bg);
-  transition: border-color 0.3s, background 0.3s; outline: none;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+
+  color: var(--text-primary);
+  background: var(--bg);
+
+  transition: border-color 0.3s, background 0.3s;
+  outline: none;
+
   appearance: none;
 }
+
 .group input:focus,
 .group select:focus,
-.group textarea:focus { border-color: var(--gold); background: var(--bg-card); }
-.group textarea { resize: vertical; }
+.group textarea:focus {
+  border-color: var(--gold);
+  background: var(--bg-card);
+}
+
+.group textarea {
+  resize: vertical;
+}
 
 .submit {
-  width: 100%; background: var(--navy); color: #fff;
-  padding: 15px; font-family: 'Jost', sans-serif;
-  font-size: 13px; font-weight: 600; letter-spacing: 2px;
-  text-transform: uppercase; border: none; border-radius: 2px;
-  cursor: pointer; transition: all 0.3s; margin-top: 6px;
-}
-.submit:hover { background: var(--gold); color: var(--navy-deep); }
+  width: 100%;
+  background: var(--navy);
+  color: #fff;
 
+  padding: 15px;
+
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  border: none;
+  border-radius: 2px;
+
+  cursor: pointer;
+  transition: all 0.3s;
+
+  margin-top: 6px;
+}
+
+.submit:hover {
+  background: var(--gold);
+  color: var(--navy-deep);
+}
+
+/* SUCCESS */
 .success {
-  text-align: center; padding: 48px 24px;
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-}
-.successIcon { font-size: 48px; }
-.success h4 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--text-primary); }
-.success p { color: var(--text-muted); font-size: 15px; }
+  text-align: center;
+  padding: 48px 24px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.successIcon {
+  font-size: 48px;
+}
+
+.success h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.success p {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+/* ───────── MOBILE ───────── */
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; gap: 40px; }
-  .row { grid-template-columns: 1fr; }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 30px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr; /* stack */
+  }
+
+  .map {
+    height: 220px;
+  }
 }

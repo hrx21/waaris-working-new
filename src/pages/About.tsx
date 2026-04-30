@@ -1,11 +1,13 @@
-import AboutSection   from '../components/About';
-import Testimonials   from '../components/Testimonials';
-import CTABanner      from '../components/CTABanner';
-import styles         from '../page.module.css';
+import AboutSection from '../components/About';
+import Partners     from '../pages/Partners';
+import Testimonials from '../components/Testimonials';
+import CTABanner    from '../components/CTABanner';
+import styles       from '../page.module.css';
 
 const AboutPage = () => (
   <main className={styles.page}>
-    {/* Page hero banner */}
+
+    {/* ── Page hero banner ── */}
     <div className={styles.pageHero}>
       <div className={styles.pageHeroInner}>
         <div className={styles.eyebrow}>
@@ -18,6 +20,7 @@ const AboutPage = () => (
     </div>
 
     <AboutSection />
+    <Partners />
     <Testimonials />
     <CTABanner />
   </main>

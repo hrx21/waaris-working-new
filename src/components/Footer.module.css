@@ -1,27 +1,136 @@
+/* ── Footer — Waaris Legacy ── */
+
 .footer {
-  background: var(--navy-deep);
-  padding: 52px 60px;
-  display: flex; align-items: center;
-  justify-content: space-between; flex-wrap: wrap; gap: 24px;
-  border-top: 1px solid rgba(201,168,76,0.15);
-  position: relative; z-index: 1;
+  --gold:       #C4973A;
+  --gold-light: #D4AA55;
+  --navy:       #0D2251;
+
+  position: relative;
+  /* background: #080f1f; */
+  background: linear-gradient(180deg, #0D2251 0%, #080f1f 100%);
+
+  overflow: hidden;
 }
 
-.logo span {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 2px;
+/* Top rule */
+.topRule {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 60px;
+}
+.ruleLine    { flex: 1; height: 1px; background: rgba(196,151,58,0.2); }
+.ruleDiamond {
+  display: block; width: 6px; height: 6px;
+  background: var(--gold); transform: rotate(45deg); flex-shrink: 0;
+}
+
+/* ── Inner — 3-col layout ── */
+.inner {
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  /* padding: 56px 60px 40px; */
+padding-left: 60px;
+padding-right: 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr; /* 👈 KEY CHANGE */
+  gap: 48px;
+  align-items: center;
+}
+
+/* ── Brand ── */
+.brand {
+  display: flex;
+  align-items: center;
+  min-width: 220px; /* 👈 stops collapse */
+}
+
+/*
+  darkLogo.jpg has a navy background (#0D2251).
+  Footer bg is #080f1f (very dark navy) — close enough that the
+  logo bg blends in naturally and looks seamless.
+  We just show the full image at a good size.
+*/
+.logoImg {
+  height: auto;
+  width: 100%;        /* 👈 IMPORTANT */
+  max-width: 260px;   /* control size */
+  object-fit: contain;
   display: block;
 }
-.logo span em { font-style: normal; color: var(--gold); }
-.logo p { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 2px; margin-top: 4px; }
 
-.links { display: flex; gap: 24px; flex-wrap: wrap; }
-.links a {
-  font-size: 12px; color: rgba(255,255,255,0.45);
-  text-decoration: none; letter-spacing: 1px; transition: color 0.3s;
+.logoImg:hover {
+  opacity: 1;
+  transform: scale(1.02);
 }
-.links a:hover { color: var(--gold); }
+.logoImg:hover { opacity: 1; }
 
-.copy { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.5px; }
+/* ── Nav links ── */
+.links {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.link {
+  font-family: 'Cinzel', serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.3s, padding-left 0.2s;
+  display: inline-block;
+}
+.link:hover { color: var(--gold); padding-left: 6px; }
 
-@media (max-width: 900px) { .footer { padding: 36px 24px; flex-direction: column; text-align: center; } }
+/* ── Contact ── */
+.contact { display: flex; flex-direction: column; gap: 10px; }
+.contactItem {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px; line-height: 1.5;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+a.contactItem:hover { color: var(--gold); }
+
+/* ── Bottom strip ── */
+.bottom {
+  max-width: 1200px; margin: 0 auto;
+  padding: 20px 60px 32px;
+  border-top: 1px solid rgba(196,151,58,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.copy {
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+.legal {
+  font-family: 'Cinzel', serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(196,151,58,0.45);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .topRule { padding: 0 14px; }
+  .inner {
+    grid-template-columns: 1fr;
+    padding: 40px 24px 28px;
+    gap: 32px;
+  }
+  .bottom  { padding: 18px 24px 28px; flex-direction: column; text-align: center; }
+  .links   { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+  .link:hover { padding-left: 0; }
+  .logoImg { height: 164px; }
+  .brand{ height:100px;   width: 100px;}
+}
+
+@media (max-width: 400px) {
+  .logoImg { height: 52px; }
+  
+}

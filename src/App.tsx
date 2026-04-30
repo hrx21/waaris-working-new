@@ -9,7 +9,7 @@ import Home    from './pages/Home';
 import About   from './pages/About';
 import Services from './components/Services';
 import Contact from './components/Contact';
-
+import Process from './components/Process';
 const App = () => (
   <ThemeProvider>
     <Navbar />
@@ -18,6 +18,8 @@ const App = () => (
       <Route path="/about"    element={<About />} />
       <Route path="/services" element={<Services />} />
       <Route path="/contact"  element={<Contact />} />
+      <Route path="/process"  element={<Process />} />
+
     </Routes>
     <Footer />
     <WhatsAppBtn />

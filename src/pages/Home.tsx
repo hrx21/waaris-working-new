@@ -1,4 +1,4 @@
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
 import About from '../components/About';
@@ -7,12 +7,12 @@ import Process from '../components/Process';
 import Testimonials from '../components/Testimonials';
 import CTABanner from '../components/CTABanner';
 import Contact from '../components/Contact';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import WhatsAppBtn from '../components/WhatsAppBtn';
 
 const Home = () => (
   <>
-    <Navbar />
+    {/* <Navbar /> */}
     <Hero />
     <TrustBar />
     <About />
@@ -21,7 +21,6 @@ const Home = () => (
     <Testimonials />
     <CTABanner />
     <Contact />
-    <Footer />
     <WhatsAppBtn />
   </>
 );

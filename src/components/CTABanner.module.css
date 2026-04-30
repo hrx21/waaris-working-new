@@ -1,44 +1,141 @@
+/* ── CTA Banner — dark navy, matches Process section ── */
+
 .banner {
-  background: var(--navy);
-  position: relative; overflow: hidden; z-index: 1;
+  --gold:       #C4973A;
+  --gold-light: #D4AA55;
+  --navy:       #1B2A4A;
+
+  position: relative;
+  background: #1B2A4A;
+  padding: 0 24px;
+  overflow: hidden;
 }
+
+/* Same radial glows as Process bgGlow */
 .banner::before {
-  content: ''; position: absolute; inset: 0;
+  content: '';
+  position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 60% 80% at 0% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 100% 50%, rgba(35,41,99,0.6) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 80% at 0%   50%, rgba(196,151,58,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 100% 50%, rgba(6,14,28,0.5)     0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.inner {
+/* ── Top/bottom rules — same as Process .topRule ── */
+.rule {
+  display: flex; align-items: center; gap: 12px;
   max-width: 1200px; margin: 0 auto;
-  padding: 90px 60px;
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 60px; align-items: center;
+}
+.ruleLine {
+  flex: 1; height: 1px;
+  background: rgba(196,151,58,0.2);
+}
+.ruleDiamond {
+  display: block;
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ── Inner layout ── */
+.inner {
   position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
 }
 
+/* ── Label — matches Process .label ── */
+.label {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+}
+.labelLine {
+  display: block;
+  width: 36px; height: 1px;
+  background: var(--gold);
+}
+.labelText {
+  font-family: 'Cinzel', serif;
+  font-size: 10.5px; font-weight: 400;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Heading — matches Process .heading ── */
 .title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 700; color: #fff;
-  line-height: 1.15; margin-bottom: 14px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 600; line-height: 1.1;
+  color: #f0ece2;
+  margin: 0 0 16px;
 }
-.title em { font-style: italic; color: var(--gold); }
+.title em {
+  font-style: italic; font-weight: 400;
+  color: var(--gold);
+}
 
-.subtitle { font-size: 15px; color: rgba(255,255,255,0.55); font-weight: 300; }
+/* ── Subtitle — matches Process .subheading ── */
+.subtitle {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 16px; line-height: 1.75;
+  color: rgba(240,236,226,0.6);
+  margin: 0;
+}
 
-.actions { display: flex; flex-direction: column; gap: 14px; align-items: center; flex-shrink: 0; }
+/* ── Actions ── */
+.actions {
+  display: flex; flex-direction: column;
+  gap: 16px; align-items: center;
+  flex-shrink: 0;
+}
 
+/* Gold fill btn — matches Process .ctaBtn */
+.btnPrimary {
+  font-family: 'Cinzel', serif;
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: #1B2A4A;
+  background: var(--gold);
+  padding: 14px 36px;
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline-block;
+  transition: background 0.3s, transform 0.2s;
+}
+.btnPrimary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* Phone link */
 .phone {
   display: flex; align-items: center; gap: 8px;
   color: var(--gold);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 600; text-decoration: none;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px; font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
   transition: color 0.3s;
 }
 .phone:hover { color: var(--gold-light); }
 
+/* ── Responsive ── */
 @media (max-width: 900px) {
-  .inner { grid-template-columns: 1fr; padding: 60px 24px; text-align: center; }
-  .actions { align-items: center; }
+  .inner {
+    grid-template-columns: 1fr;
+    padding: 64px 0 56px;
+    text-align: center;
+    gap: 36px;
+  }
+  .label   { justify-content: center; }
+  .actions { align-items: center; width: 100%; }
+  .btnPrimary { width: 100%; text-align: center; }
+}
+
+@media (max-width: 560px) {
+  .banner { padding: 0 16px; }
+  .title  { font-size: 32px; }
 }
