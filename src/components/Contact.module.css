@@ -1,0 +1,75 @@
+.section { background: var(--bg); position: relative; z-index: 1; }
+
+.grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+
+.info { padding-top: 8px; }
+
+.detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 24px; }
+
+.detailIcon {
+  width: 42px; height: 42px;
+  background: var(--navy); border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+
+.detail div strong { display: block; font-size: 11px; font-weight: 600; color: var(--text-primary); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+.detail div span { font-size: 14px; color: var(--text-muted); }
+
+.formBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 44px 36px;
+}
+
+.formTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 700; color: var(--text-primary); margin-bottom: 28px;
+}
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.group { margin-bottom: 18px; }
+
+.group label {
+  display: block; font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-primary); margin-bottom: 7px;
+}
+
+.group input,
+.group select,
+.group textarea {
+  width: 100%; padding: 13px 14px;
+  border: 1px solid var(--border); border-radius: 2px;
+  font-family: 'Jost', sans-serif; font-size: 14px;
+  color: var(--text-primary); background: var(--bg);
+  transition: border-color 0.3s, background 0.3s; outline: none;
+  appearance: none;
+}
+.group input:focus,
+.group select:focus,
+.group textarea:focus { border-color: var(--gold); background: var(--bg-card); }
+.group textarea { resize: vertical; }
+
+.submit {
+  width: 100%; background: var(--navy); color: #fff;
+  padding: 15px; font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; border: none; border-radius: 2px;
+  cursor: pointer; transition: all 0.3s; margin-top: 6px;
+}
+.submit:hover { background: var(--gold); color: var(--navy-deep); }
+
+.success {
+  text-align: center; padding: 48px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.successIcon { font-size: 48px; }
+.success h4 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--text-primary); }
+.success p { color: var(--text-muted); font-size: 15px; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: 40px; }
+  .row { grid-template-columns: 1fr; }
+}

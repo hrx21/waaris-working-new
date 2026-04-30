@@ -1,0 +1,24 @@
+.bar {
+  background: var(--navy-deep);
+  padding: 16px 60px;
+  display: flex; align-items: center;
+  justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600;
+  color: var(--bg); letter-spacing: 0.5px;
+}
+@media (max-width: 900px) {
+  .bar {
+    padding: 14px 16px; /* tighter horizontal padding */
+    gap: 12px 20px;     /* row-gap col-gap separate so items breathe */
+  }
+
+  .item {
+    font-size: 12px;    /* slightly smaller so 5 items fit in 2 rows comfortably */
+    gap: 6px;
+  }
+}

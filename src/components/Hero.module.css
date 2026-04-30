@@ -1,0 +1,375 @@
+/* ── Hero — Waaris Legacy Blue & White Theme ── */
+
+/* ── Light mode tokens ── */
+.hero {
+  --bg:          #ffffff;
+  --text:        #0D2251;
+  --text-muted:  rgba(13,34,81,0.55);
+  --border:      rgba(13,34,81,0.1);
+  --card-bg:     rgba(13,34,81,0.03);
+  --card-border: rgba(13,34,81,0.1);
+  --grid-color:  rgba(13,34,81,0.04);
+  --corner-color:#0D2251;
+}
+
+/* ── Dark mode tokens ── */
+.heroDark {
+  --bg:          #0D2251;
+  --text:        #ffffff;
+  --text-muted:  rgba(255,255,255,0.6);
+  --border:      rgba(255,255,255,0.1);
+  --card-bg:     rgba(255,255,255,0.05);
+  --card-border: rgba(255,255,255,0.12);
+  --grid-color:  rgba(255,255,255,0.04);
+  --corner-color:#ffffff;
+}
+
+/* ── Global vars (keep in sync with Navbar) ── */
+:root {
+  --blue:       #0D2251;
+  --blue-mid:   #152d6e;
+  --blue-light: #1a3580;
+  --blue-dim:   rgba(13,34,81,0.08);
+  --gold:       #C9A84C;
+  --gold-light: #e0c06a;
+  --white:      #ffffff;
+}
+
+/* ── Section ── */
+.hero {
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  transition: background 0.4s;
+}
+
+/* Subtle grid pattern */
+.bgGrid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+}
+
+/* Soft radial glow — blue tint in light, lighter in dark */
+.bgGlow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 50% at 75% 50%, rgba(13,34,81,0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 40% at 15% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.heroDark .bgGlow {
+  background:
+    radial-gradient(ellipse 55% 50% at 75% 50%, rgba(255,255,255,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 40% at 15% 80%, rgba(201,168,76,0.07) 0%, transparent 60%);
+}
+
+/* ── Corner brackets ── */
+.corner {
+  position: absolute;
+  width: 52px; height: 52px;
+  color: var(--corner-color);
+  opacity: 0.15;
+}
+.heroDark .corner { opacity: 0.25; }
+.tl { top: 80px;    left: 32px;   transform: rotate(0deg);   }
+.tr { top: 80px;    right: 32px;  transform: rotate(90deg);  }
+.bl { bottom: 32px; left: 32px;   transform: rotate(-90deg); }
+.br { bottom: 32px; right: 32px;  transform: rotate(180deg); }
+
+/* ── Content grid ── */
+.content {
+  position: relative; z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 130px 60px 90px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+  animation: fadeUp 0.9s ease both;
+}
+
+/* ── Eyebrow ── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 26px;
+}
+.eyebrowLine {
+  width: 36px; height: 1.5px;
+  background: var(--blue);
+  display: block;
+  opacity: 0.4;
+}
+.heroDark .eyebrowLine { background: var(--white); }
+
+.eyebrow span:last-child {
+  font-family: 'Cinzel', serif;
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* ── Title ── */
+.title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(24px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* Gold italic accent */
+.titleAccent {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: clamp(28px, 4.5vw, 58px);
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── Ornament divider ── */
+.ornament {
+  display: flex; align-items: center; gap: 10px;
+  margin: 20px 0 24px;
+}
+.ornamentLine {
+  height: 1px;
+  background: var(--text);
+  opacity: 0.15;
+  flex: 1; max-width: 60px;
+}
+.ornamentDiamond {
+  width: 7px; height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ── Subtitle ── */
+.subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 17px; line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 440px; margin-bottom: 44px;
+}
+
+/* ── Buttons ── */
+.buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btnPrimary {
+  font-family: 'Cinzel', serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  text-decoration: none;
+  background: var(--blue);
+  color: var(--white);
+  padding: 13px 28px;
+  border-radius: 2px;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+}
+.btnPrimary:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+/* Dark mode primary btn — gold */
+.heroDark .btnPrimary {
+  background: var(--gold);
+  color: var(--blue);
+}
+.heroDark .btnPrimary:hover { background: var(--gold-light); }
+
+.btnOutline {
+  font-family: 'Cinzel', serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  padding: 12px 28px;
+  border-radius: 2px;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+  display: inline-block;
+}
+.btnOutline:hover {
+  border-color: var(--blue);
+  background: var(--blue-dim);
+  color: var(--blue);
+}
+.heroDark .btnOutline:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+}
+
+/* ── Stats card ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 3px;
+  padding: 40px 34px;
+  width: 100%; max-width: 380px;
+  position: relative;
+}
+
+/* Inner corner accents — blue in light, gold in dark */
+.card::before, .card::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-style: solid;
+  border-color: var(--blue);
+  opacity: 0.2;
+}
+.heroDark .card::before,
+.heroDark .card::after {
+  border-color: var(--gold);
+  opacity: 0.4;
+}
+.card::before {
+  top: 10px; left: 10px;
+  border-width: 1.5px 0 0 1.5px;
+}
+.card::after {
+  bottom: 10px; right: 10px;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+.cardTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 26px; padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.stat {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.stat:last-child { border-bottom: none; }
+
+.statIcon {
+  width: 42px; height: 42px;
+  background: rgba(13,34,81,0.05);
+  border: 1px solid rgba(13,34,81,0.1);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.heroDark .statIcon {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.stat div strong {
+  display: block;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--blue); line-height: 1.1;
+}
+.heroDark .stat div strong { color: var(--white); }
+
+.stat div span {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px; color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* ── Pills ── */
+.pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 48px;
+}
+.pill {
+  font-family: 'Cinzel', serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--blue);
+  border: 1px solid rgba(13,34,81,0.15);
+  border-radius: 2px;
+  padding: 6px 14px;
+  background: rgba(13,34,81,0.04);
+  white-space: nowrap;
+}
+.heroDark .pill {
+  color: rgba(255,255,255,0.7);
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+}
+
+/* ── Animation ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile ── */
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+    padding: 100px 20px 56px;
+    gap: 40px;
+  }
+  .card { max-width: 100%; padding: 28px 20px; }
+  .cardTitle { font-size: 10px; }
+  .title { font-size: clamp(20px, 6.5vw, 34px); }
+  .subtitle { font-size: 16px; max-width: 100%; margin-bottom: 32px; }
+  .buttons { flex-direction: column; width: 100%; }
+  .btnPrimary, .btnOutline { text-align: center; }
+  .corner { width: 36px; height: 36px; }
+  .tl { top: 70px; left: 14px; }
+  .tr { top: 70px; right: 14px; }
+  .bl { bottom: 14px; left: 14px; }
+  .br { bottom: 14px; right: 14px; }
+  .pills { margin-top: 32px; }
+}
+/* ── Right column image ── */
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  /* min-height: 400px;         */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;   /* hug the right edge on desktop */
+}
+
+.heroImg {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+}
+
+
+/* Mobile override */
+@media (max-width: 900px) {
+  .imageWrapper {
+    justify-content: center;
+    min-height: unset;
+  }
+  .heroImg {
+    max-width: 100%;
+    max-height: 280px;
+  }
+}

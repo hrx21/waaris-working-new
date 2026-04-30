@@ -1,0 +1,61 @@
+.services { background: var(--bg); position: relative; z-index: 1; }
+
+.header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 56px; flex-wrap: wrap; gap: 24px;
+}
+
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 44px 32px;
+  position: relative; overflow: hidden;
+  transition: all 0.35s;
+  cursor: pointer;
+}
+.card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s;
+}
+.card:hover { border-color: rgba(201,168,76,0.3); box-shadow: 0 16px 48px var(--shadow); transform: translateY(-4px); }
+.card:hover::after { transform: scaleX(1); }
+
+.num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; font-weight: 700;
+  color: var(--border); line-height: 1;
+  position: absolute; top: 14px; right: 18px;
+  transition: color 0.3s;
+}
+
+.icon {
+  width: 50px; height: 50px;
+  background: var(--bg-subtle); border: 1px solid var(--border);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 22px;
+  transition: all 0.3s;
+}
+.card:hover .icon { background: var(--navy); border-color: var(--navy); }
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px; font-weight: 700; color: var(--text-primary);
+  margin-bottom: 12px; line-height: 1.25;
+  transition: color 0.3s;
+}
+.desc { font-size: 14px; line-height: 1.7; color: var(--text-muted); margin-bottom: 22px; font-weight: 300; }
+.link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gold); text-decoration: none;
+  transition: gap 0.3s;
+}
+.link:hover { gap: 10px; }
+
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
