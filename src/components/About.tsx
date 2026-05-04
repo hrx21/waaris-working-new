@@ -89,7 +89,26 @@ const About = () => {
               </div>
             ))}
           </div>
+                  {/* Vision & Mission */}
+<div className={styles.visionMission}>
+  <div className={styles.vmItem}>
+    <span className={styles.vmDot} aria-hidden="true" />
+    <div>
+      <strong className={styles.vmTitle}>Vision</strong>
+      <span className={styles.vmText}>Restoring financial legacies to rightful heirs</span>
+    </div>
+  </div>
+  <div className={styles.vmItem}>
+    <span className={styles.vmDot} aria-hidden="true" />
+    <div>
+      <strong className={styles.vmTitle}>Mission</strong>
+      <span className={styles.vmText}>Simplifying complex recovery processes</span>
+    </div>
+  </div>
+</div>
         </div>
+
+
 
         {/* ── RIGHT COLUMN ── */}
         <div className={styles.right}>

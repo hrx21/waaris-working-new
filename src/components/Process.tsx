@@ -5,8 +5,8 @@ import FAQ from '../pages/Faq';
 const STEPS = [
   {
     n: '1',
-    title: 'Eligibility Check',
-    desc: 'Tell us about your assets — shares, dividends, or holdings. We assess your eligibility for free, no commitment required.',
+    title: 'Asset Tracing',
+    desc: 'Tell us about your assets — shares, dividends, or holdings. we trace your assets free no commitment required.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

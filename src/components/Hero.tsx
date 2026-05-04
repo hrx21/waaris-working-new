@@ -46,8 +46,8 @@ const Hero = () => {
           </div>
 
             <h1>
-              <span className={styles.title}>Where Legacy</span>
-              <span className={styles.titleAccent}>Finds Its Heir</span>
+              <span className={styles.title}>Waaris Legacy</span>
+              <span className={styles.titleAccent}>Where Legacy Finds Its Heir</span>
               {/* <span className={styles.title}>Reclaim What's Yours</span> */}
             </h1>
           {/* Ornament */}

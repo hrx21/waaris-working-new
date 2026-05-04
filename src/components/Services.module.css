@@ -273,3 +273,106 @@
   .header { flex-direction: column; align-items: flex-start; }
   .headerRight { flex: 0 0 auto; }
 }
+/* ── Add these to your existing Services.module.css ── */
+
+/* Expanded grid — single column for readability on services page */
+.gridExpanded {
+  grid-template-columns: 1fr;
+  max-width: 860px;
+  margin-inline: auto;
+  gap: 2rem;
+}
+
+/* Expanded card — horizontal layout with more breathing room */
+.cardExpanded {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto auto;
+  column-gap: 1.5rem;
+  padding: 2rem 2.5rem;
+}
+
+.cardExpanded .num {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.cardExpanded .iconWrap {
+  grid-column: 1;
+  grid-row: 2 / 5;
+  align-self: start;
+  margin-top: 0.25rem;
+}
+
+.cardExpanded .title {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.cardExpanded .desc {
+  grid-column: 2;
+  grid-row: 2;
+  margin-bottom: 1rem;
+}
+
+.cardExpanded .expandedContent {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.cardExpanded .cardFooter {
+  grid-column: 2;
+  grid-row: 4;
+  margin-top: 1.25rem;
+}
+
+/* Full description paragraph */
+.fullDesc {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  opacity: 0.8;
+  margin-bottom: 1.25rem;
+}
+
+/* Bullet points */
+.points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.point {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.pointDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 0.42em;
+  border-radius: 50%;
+  background-color: var(--color-gold, #b8972a);
+}
+
+/* Responsive — stack on mobile */
+@media (max-width: 640px) {
+  .cardExpanded {
+    grid-template-columns: 1fr;
+  }
+  .cardExpanded .iconWrap {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .cardExpanded .expandedContent,
+  .cardExpanded .cardFooter {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}

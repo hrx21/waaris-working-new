@@ -136,7 +136,8 @@
 .titleAccent {
   font-family: 'EB Garamond', serif;
   font-style: italic;
-  font-size: clamp(28px, 4.5vw, 58px);
+  /* font-size: clamp(28px, 4.5vw, 58px); */
+  font-size: 40px;
   font-weight: 500;
   color: var(--gold);
   letter-spacing: 0;
