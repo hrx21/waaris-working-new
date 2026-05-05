@@ -1,6 +1,6 @@
 import { useTheme } from '../context/ThemeContext';
 import styles from './Hero.module.css';
-import heroImg from '../assets/hero1.svg'
+import heroImg from '../assets/hero.svg'
 // const STATS = [
 //   { icon: '📋', value: '500+',        label: 'Certificates Converted' },
 //   { icon: '⚖️', value: '100%',        label: 'Legal & Compliant' },

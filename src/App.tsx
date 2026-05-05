@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 // Pages
 import Home    from './pages/Home';
 import About   from './pages/About';
-import Services from './components/Services';
+import Services from '../src/pages/Service';
 import Contact from './components/Contact';
 import Process from './components/Process';
 const App = () => (

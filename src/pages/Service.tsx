@@ -1,7 +1,6 @@
 import { useTheme } from '../context/ThemeContext';
-import Process from '../components/Process';
-import CTABanner from '../components/CTABanner';
-import styles from './ServicesPage.module.css';
+// import CTABanner from '../components/CTABanner';
+import styles from '../../src/components/Services.module.css';
 
 const SERVICES = [
   {
@@ -153,65 +152,106 @@ const ServicesPage = () => {
     <main className={`${styles.page} ${isDark ? styles.pageDark : ''}`}>
 
       {/* ── HERO ── */}
-      <div className={styles.pageHero}>
-        <div className={styles.pageHeroInner}>
+      <section className={`${styles.hero} ${isDark ? styles.heroDark : ''}`}>
+        <div className={styles.heroBg}>
+          <div className={styles.heroBgCircle1} />
+          <div className={styles.heroBgCircle2} />
+          <div className={styles.heroTopRule} />
+          <div className={styles.heroBottomRule} />
+        </div>
+        <div className={styles.heroInner}>
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowLine} />
-            <span>What We Do</span>
+            <span className={styles.eyebrowText}>What We Do</span>
+            <span className={styles.eyebrowLine} />
           </div>
-          <h1>Our <em>Recovery Services</em></h1>
-          <p>
+          <h1 className={styles.heroTitle}>
+            Our <em className={styles.heroTitleEm}>Recovery</em>
+            <br />Services
+          </h1>
+          <p className={styles.heroDesc}>
             At WAARIS Legacy, we provide specialized advisory and execution support for recovery,
             correction, and transmission of financial securities and related investor entitlements.
             Our services are designed to simplify complex procedural requirements and help rightful
             owners reclaim what belongs to them.
           </p>
+          {/* Nav pills */}
+          <div className={styles.heroNav}>
+            {SERVICES.map((s) => (
+              <a key={s.id} href={`#${s.id}`} className={styles.heroNavPill}>
+                <span className={styles.heroNavNum}>{s.num}</span>
+                <span className={styles.heroNavLabel}>{s.title}</span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* ── SERVICES LIST ── */}
-      <section className={styles.servicesList}>
+      <section className={`${styles.servicesList} ${isDark ? styles.servicesListDark : ''}`}>
         <div className={styles.inner}>
           {SERVICES.map((s, i) => (
             <article
               key={s.id}
               id={s.id}
-              className={`${styles.serviceBlock} ${i % 2 !== 0 ? styles.serviceBlockAlt : ''}`}
+              className={`${styles.serviceBlock} ${i % 2 !== 0 ? styles.serviceBlockAlt : ''} ${isDark ? styles.serviceBlockDark : ''}`}
             >
-              {/* Left panel */}
-              <div className={styles.serviceLeft}>
-                <span className={styles.serviceNum}>{s.num}</span>
-                <div className={styles.serviceIconWrap}>
-                  <div className={styles.serviceIcon}>{s.icon}</div>
-                </div>
-                <h2 className={styles.serviceTitle}>{s.title}</h2>
-                <a href="#contact" className={styles.serviceCtaBtn}>
-                  Enquire Now
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.ctaArrow}>
-                    <path d="M4 10h12m-5-5l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
+              {/* ── Number ribbon ── */}
+              <div className={styles.numRibbon}>
+                <span className={styles.numBig}>{s.num}</span>
+                <div className={styles.numLine} />
               </div>
 
-              {/* Right panel */}
-              <div className={styles.serviceRight}>
-                {s.paras.map((para, pi) => (
-                  <p key={pi} className={styles.servicePara}>{para}</p>
-                ))}
-                <div className={styles.supportBox}>
-                  <p className={styles.supportLabel}>Our support includes:</p>
-                  <ul className={styles.points}>
-                    {s.points.map((pt) => (
-                      <li key={pt} className={styles.point}>
-                        <span className={styles.pointDot} aria-hidden="true" />
-                        {pt}
-                      </li>
+              {/* ── Content ── */}
+              <div className={styles.serviceContent}>
+                {/* Header */}
+                <div className={styles.serviceHeader}>
+                  <div className={styles.serviceIconWrap}>
+                    <div className={styles.serviceIcon}>{s.icon}</div>
+                    <div className={styles.serviceIconGlow} />
+                  </div>
+                  <div className={styles.serviceTitleRow}>
+                    <h2 className={styles.serviceTitle}>{s.title}</h2>
+                    <a href="#contact" className={styles.serviceCtaBtn}>
+                      Enquire Now
+                      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.ctaArrow}>
+                        <path d="M4 10h12m-5-5l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className={styles.serviceDivider}>
+                  <span className={styles.serviceDividerLine} />
+                  <span className={styles.serviceDividerDiamond} />
+                  <span className={styles.serviceDividerLine} />
+                </div>
+
+                {/* Body */}
+                <div className={styles.serviceBody}>
+                  <div className={styles.serviceParas}>
+                    {s.paras.map((para, pi) => (
+                      <p key={pi} className={styles.servicePara}>{para}</p>
                     ))}
-                  </ul>
+                  </div>
+
+                  <div className={styles.supportBox}>
+                    <p className={styles.supportLabel}>
+                      <span className={styles.supportLabelLine} />
+                      Our support includes
+                    </p>
+                    <ul className={styles.points}>
+                      {s.points.map((pt) => (
+                        <li key={pt} className={styles.point}>
+                          <span className={styles.pointDot} aria-hidden="true" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-
-              <div className={styles.blockRule} aria-hidden="true" />
             </article>
           ))}
         </div>
@@ -219,13 +259,18 @@ const ServicesPage = () => {
 
       {/* ── WHY WAARIS ── */}
       <section className={`${styles.whySection} ${isDark ? styles.whySectionDark : ''}`}>
+        <div className={styles.whyBg}>
+          <div className={styles.whyBgGlow} />
+        </div>
         <div className={styles.whyInner}>
           <div className={styles.label}>
             <span className={styles.labelLine} />
             <span className={styles.labelText}>Why Choose Us</span>
+            <span className={styles.labelLine} />
           </div>
           <h2 className={styles.whyHeading}>
-            Why Clients Choose <em className={styles.whyEm}>WAARIS Legacy</em>
+            Why Clients Choose{' '}
+            <em className={styles.whyEm}>WAARIS Legacy</em>
           </h2>
           <div className={styles.divider}>
             <span className={styles.dividerLine} />
@@ -233,18 +278,31 @@ const ServicesPage = () => {
             <span className={styles.dividerLine} />
           </div>
           <ul className={styles.whyList}>
-            {WHY_US.map((item) => (
+            {WHY_US.map((item, i) => (
               <li key={item} className={styles.whyItem}>
-                <span className={styles.whyDot} aria-hidden="true" />
-                <span>{item}</span>
+                <span className={styles.whyItemNum}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={styles.whyItemText}>{item}</span>
               </li>
             ))}
           </ul>
+
+          {/* Consult callout */}
+          <div className={styles.consultBox}>
+            <p className={styles.consultText}>
+              Every recovery matter is unique. Our team can assess your situation and recommend
+              the most effective pathway toward resolution.
+            </p>
+            <a href="#contact" className={styles.consultBtn}>
+              Request a Consultation
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.consultArrow}>
+                <path d="M4 10h12m-5-5l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
-      <Process />
-      <CTABanner />
+      {/* <CTABanner /> */}
     </main>
   );
 };
