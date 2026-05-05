@@ -533,3 +533,149 @@
   .heroNavLabel { display: none; }
   .servicesList { padding: 0 16px 60px; }
 }
+
+
+/* ════════════════════════════════════════
+   ENQUIRY MODAL
+   ════════════════════════════════════════ */
+.modalOverlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(7, 17, 31, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  position: relative;
+  background: #ffffff;
+  width: 100%; max-width: 520px;
+  padding: 48px 44px 40px;
+  border-top: 3px solid #C4973A;
+  animation: slideUp 0.25s ease;
+}
+.pageDark .modal {
+  background: #0d1b30;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* corner ornaments */
+.modal::before, .modal::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border-color: rgba(196,151,58,0.5); border-style: solid;
+}
+.modal::before { bottom: 10px; left: 10px;  border-width: 0 0 1px 1px; }
+.modal::after  { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+.modalClose {
+  position: absolute; top: 16px; right: 18px;
+  background: none; border: none; cursor: pointer;
+  font-size: 22px; line-height: 1;
+  color: #7A7A7A;
+  transition: color 0.2s;
+}
+.modalClose:hover { color: #C4973A; }
+
+.modalEyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: #C4973A; margin: 0 0 10px;
+}
+
+.modalTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 26px; font-weight: 700; line-height: 1.2;
+  color: #1B2A4A; margin: 0 0 6px;
+}
+.pageDark .modalTitle { color: #f0ece2; }
+
+.modalService {
+  font-size: 13px; color: #7A7A7A;
+  font-style: italic; margin: 0 0 28px;
+}
+
+.modalDivider {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+}
+.modalDividerLine { flex: 1; height: 1px; background: rgba(196,151,58,0.2); }
+.modalDividerDiamond {
+  width: 6px; height: 6px;
+  background: #C4973A; transform: rotate(45deg); flex-shrink: 0;
+}
+
+.modalForm { display: flex; flex-direction: column; gap: 16px; }
+
+.modalRow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.modalGroup { display: flex; flex-direction: column; gap: 6px; }
+.modalGroup label {
+  font-family: 'Cinzel', serif;
+  font-size: 8.5px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #C4973A;
+}
+.modalGroup input,
+.modalGroup select,
+.modalGroup textarea {
+  border: 1px solid rgba(196,151,58,0.25);
+  background: #F8F6F1;
+  padding: 10px 14px;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 15px;
+  color: #1B2A4A;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.pageDark .modalGroup input,
+.pageDark .modalGroup select,
+.pageDark .modalGroup textarea {
+  background: #07111f;
+  color: #f0ece2;
+}
+.modalGroup input:focus,
+.modalGroup select:focus,
+.modalGroup textarea:focus {
+  border-color: #C4973A;
+}
+.modalGroup textarea { resize: vertical; min-height: 80px; }
+
+.modalSubmit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: #ffffff;
+  background: #1B2A4A;
+  border: none; cursor: pointer;
+  padding: 14px 28px; margin-top: 4px;
+  transition: background 0.3s, gap 0.25s;
+  width: 100%;
+}
+.modalSubmit:hover:not(:disabled) { background: #243659; gap: 14px; }
+.modalSubmit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.modalSuccess {
+  text-align: center; padding: 20px 0 8px;
+}
+.modalSuccessIcon { font-size: 36px; margin-bottom: 14px; }
+.modalSuccess h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px; font-weight: 700;
+  color: #1B2A4A; margin: 0 0 8px;
+}
+.pageDark .modalSuccess h4 { color: #f0ece2; }
+.modalSuccess p { font-size: 15px; color: #7A7A7A; margin: 0; }
+
+@media (max-width: 560px) {
+  .modal { padding: 36px 24px 32px; }
+  .modalRow { grid-template-columns: 1fr; }
+}

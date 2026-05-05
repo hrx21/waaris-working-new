@@ -7,9 +7,9 @@ import LightLogo from '../assets/logo.jpg';
 import { Menu, X } from 'lucide-react';
 
 const ABOUT_DROPDOWN = [
-  { label: 'Our Company',    href: '/about#company'    },
-  { label: 'Our Associates', href: '/about#associates' },
-  { label: 'Our Partners',   href: '/about#partners'   },
+{ label: 'Our Company', href: '/about#about' },
+  // { label: 'Our Associates', href: '/about#associates' },
+{ label: 'Our Partners', href: '/about#partners' },
 ];
 
 const SERVICES_DROPDOWN = [
@@ -59,6 +59,14 @@ const Navbar = () => {
     setAboutOpen(false);
     setServicesOpen(false);
   };
+  // Add this helper near the top of Navbar component
+const scrollToSection = (href: string) => {
+  closeAll();
+  const [path, hash] = href.split('#');
+  if (window.location.pathname === path && hash) {
+    document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
@@ -84,13 +92,17 @@ const Navbar = () => {
             />
           </button>
           <ul className={`${styles.dropdown} ${aboutOpen ? styles.show : ''}`}>
-            {ABOUT_DROPDOWN.map(item => (
-              <li key={item.href}>
-                <Link to={item.href} className={styles.dropdownItem} onClick={closeAll}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+          {ABOUT_DROPDOWN.map(item => (
+            <li key={item.href}>
+              <Link
+                to={item.href}
+                className={styles.dropdownItem}
+                onClick={() => scrollToSection(item.href)}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
           </ul>
         </li>
 

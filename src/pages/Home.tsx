@@ -3,7 +3,7 @@ import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
 import About from '../components/About';
 import Services from '../components/Services';
-import Process from '../components/Process';
+// import Process from '../components/Process';
 import Testimonials from '../components/Testimonials';
 import CTABanner from '../components/CTABanner';
 import Contact from '../components/Contact';
@@ -17,7 +17,7 @@ const Home = () => (
     <TrustBar />
     <About />
     <Services />
-    <Process />
+    {/* <Process /> */}
     <Testimonials />
     <CTABanner />
     <Contact />

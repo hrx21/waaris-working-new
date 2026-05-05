@@ -1,6 +1,9 @@
 import { useTheme } from '../context/ThemeContext';
 // import CTABanner from '../components/CTABanner';
-import styles from '../../src/components/Services.module.css';
+import styles from '../servicePage.module.css';
+import { useState } from 'react';
+
+const WEB3FORMS_KEY = 'db1b5451-4ad2-48ca-9987-bc1248b62d0f'; // same key from Contact.tsx
 
 const SERVICES = [
   {
@@ -136,6 +139,15 @@ const SERVICES = [
     ],
   },
 ];
+const ASSET_TYPES = [
+  'IEPF Claims',
+  'Transmission of Securities',
+  'Duplicate Share Certificate',
+  'Name Correction / Name Change',
+  'Name Deletion',
+  'Suspense Escrow Account Claims',
+  'Not Sure – Need Guidance',
+];
 
 const WHY_US = [
   'Specialized expertise in financial asset recovery and investor services',
@@ -144,12 +156,127 @@ const WHY_US = [
   'Focus on rightful ownership restoration and legacy preservation',
 ];
 
+type ModalState = { open: false } | { open: true; serviceTitle: string };
+type Status = 'idle' | 'sending' | 'success' | 'error';
+
+const EnquiryModal = ({
+  state, onClose, isDark,
+}: {
+  state: ModalState; onClose: () => void; isDark: boolean;
+}) => {
+  const [form, setForm] = useState({ name: '', phone: '', email: '', asset: '' });
+  const [status, setStatus] = useState<Status>('idle');
+
+  if (!state.open) return null;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    setForm(p => ({ ...p, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Service Enquiry — ${state.serviceTitle}`,
+          from_name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service_enquired: state.serviceTitle,
+          asset_type: form.asset,
+          message: `Enquiry for: ${state.serviceTitle}\nAsset type: ${form.asset}\nPhone: ${form.phone}`,
+        }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <div
+      className={styles.modalOverlay}
+      onClick={e => e.target === e.currentTarget && onClose()}
+    >
+      <div className={`${styles.modal} ${isDark ? styles.pageDark : ''}`}>
+        <button className={styles.modalClose} onClick={onClose} aria-label="Close">×</button>
+
+        {status === 'success' ? (
+          <div className={styles.modalSuccess}>
+            <div className={styles.modalSuccessIcon}>✦</div>
+            <h4>Enquiry Received</h4>
+            <p>Our team will reach out within 24 hours.</p>
+          </div>
+        ) : (
+          <>
+            <p className={styles.modalEyebrow}>Free Consultation</p>
+            <h3 className={styles.modalTitle}>Submit an Enquiry</h3>
+            <p className={styles.modalService}>Regarding: {state.serviceTitle}</p>
+
+            <div className={styles.modalDivider}>
+              <span className={styles.modalDividerLine} />
+              <span className={styles.modalDividerDiamond} />
+              <span className={styles.modalDividerLine} />
+            </div>
+
+            <form className={styles.modalForm} onSubmit={handleSubmit}>
+              <div className={styles.modalRow}>
+                <div className={styles.modalGroup}>
+                  <label htmlFor="m-name">Full Name</label>
+                  <input id="m-name" name="name" type="text" placeholder="Ramesh Iyer"
+                    value={form.name} onChange={handleChange} required />
+                </div>
+                <div className={styles.modalGroup}>
+                  <label htmlFor="m-phone">Phone</label>
+                  <input id="m-phone" name="phone" type="tel" placeholder="+91 98765 43210"
+                    value={form.phone} onChange={handleChange} required />
+                </div>
+              </div>
+
+              <div className={styles.modalGroup}>
+                <label htmlFor="m-email">Email Address</label>
+                <input id="m-email" name="email" type="email" placeholder="ramesh@example.com"
+                  value={form.email} onChange={handleChange} required />
+              </div>
+
+              <div className={styles.modalGroup}>
+                <label htmlFor="m-asset">Type of Asset</label>
+                <select id="m-asset" name="asset" value={form.asset} onChange={handleChange} required>
+                  <option value="">Select...</option>
+                  {ASSET_TYPES.map(a => <option key={a}>{a}</option>)}
+                </select>
+              </div>
+
+              {status === 'error' && (
+                <p style={{ fontSize: 13, color: '#c0392b', margin: 0 }}>
+                  Something went wrong. Email us at info@waarislegacy.com
+                </p>
+              )}
+
+              <button type="submit" className={styles.modalSubmit} disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending…' : 'Submit Enquiry →'}
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const ServicesPage = () => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const [modal, setModal] = useState<ModalState>({ open: false });
 
   return (
     <main className={`${styles.page} ${isDark ? styles.pageDark : ''}`}>
+      <EnquiryModal state={modal} onClose={() => setModal({ open: false })} isDark={isDark} />
 
       {/* ── HERO ── */}
       <section className={`${styles.hero} ${isDark ? styles.heroDark : ''}`}>
@@ -191,20 +318,14 @@ const ServicesPage = () => {
       <section className={`${styles.servicesList} ${isDark ? styles.servicesListDark : ''}`}>
         <div className={styles.inner}>
           {SERVICES.map((s, i) => (
-            <article
-              key={s.id}
-              id={s.id}
+            <article key={s.id} id={s.id}
               className={`${styles.serviceBlock} ${i % 2 !== 0 ? styles.serviceBlockAlt : ''} ${isDark ? styles.serviceBlockDark : ''}`}
             >
-              {/* ── Number ribbon ── */}
               <div className={styles.numRibbon}>
                 <span className={styles.numBig}>{s.num}</span>
                 <div className={styles.numLine} />
               </div>
-
-              {/* ── Content ── */}
               <div className={styles.serviceContent}>
-                {/* Header */}
                 <div className={styles.serviceHeader}>
                   <div className={styles.serviceIconWrap}>
                     <div className={styles.serviceIcon}>{s.icon}</div>
@@ -212,37 +333,37 @@ const ServicesPage = () => {
                   </div>
                   <div className={styles.serviceTitleRow}>
                     <h2 className={styles.serviceTitle}>{s.title}</h2>
-                    <a href="#contact" className={styles.serviceCtaBtn}>
+
+                    {/* ← only change: button instead of <a href="#contact"> */}
+                    <button
+                      className={styles.serviceCtaBtn}
+                      onClick={() => setModal({ open: true, serviceTitle: s.title })}
+                    >
                       Enquire Now
                       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.ctaArrow}>
                         <path d="M4 10h12m-5-5l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                    </a>
+                    </button>
                   </div>
                 </div>
 
-                {/* Divider */}
                 <div className={styles.serviceDivider}>
                   <span className={styles.serviceDividerLine} />
                   <span className={styles.serviceDividerDiamond} />
                   <span className={styles.serviceDividerLine} />
                 </div>
 
-                {/* Body */}
                 <div className={styles.serviceBody}>
                   <div className={styles.serviceParas}>
-                    {s.paras.map((para, pi) => (
-                      <p key={pi} className={styles.servicePara}>{para}</p>
-                    ))}
+                    {s.paras.map((para, pi) => <p key={pi} className={styles.servicePara}>{para}</p>)}
                   </div>
-
                   <div className={styles.supportBox}>
                     <p className={styles.supportLabel}>
                       <span className={styles.supportLabelLine} />
                       Our support includes
                     </p>
                     <ul className={styles.points}>
-                      {s.points.map((pt) => (
+                      {s.points.map(pt => (
                         <li key={pt} className={styles.point}>
                           <span className={styles.pointDot} aria-hidden="true" />
                           <span>{pt}</span>
@@ -256,6 +377,7 @@ const ServicesPage = () => {
           ))}
         </div>
       </section>
+
 
       {/* ── WHY WAARIS ── */}
       <section className={`${styles.whySection} ${isDark ? styles.whySectionDark : ''}`}>
