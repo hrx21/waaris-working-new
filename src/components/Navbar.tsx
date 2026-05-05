@@ -60,14 +60,31 @@ const Navbar = () => {
     setServicesOpen(false);
   };
   // Add this helper near the top of Navbar component
+// Replace this helper:
 const scrollToSection = (href: string) => {
   closeAll();
-  const [path, hash] = href.split('#');
-  if (window.location.pathname === path && hash) {
+  const [, hash] = href.split('#');
+  if (!hash) return;
+
+  // If already on the right page, scroll immediately
+  const [path] = href.split('#');
+  if (window.location.pathname === path) {
     document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    // Store hash so we can scroll after navigation completes
+    sessionStorage.setItem('scrollTarget', hash);
   }
 };
-
+useEffect(() => {
+  const hash = sessionStorage.getItem('scrollTarget');
+  if (hash) {
+    sessionStorage.removeItem('scrollTarget');
+    // Small delay lets the page mount and render
+    setTimeout(() => {
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+}, []); // runs once on every page mount
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
 
@@ -119,13 +136,17 @@ const scrollToSection = (href: string) => {
             />
           </button>
           <ul className={`${styles.dropdown} ${servicesOpen ? styles.show : ''}`}>
-            {SERVICES_DROPDOWN.map(item => (
-              <li key={item.href}>
-                <Link to={item.href} className={styles.dropdownItem} onClick={closeAll}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+        {SERVICES_DROPDOWN.map(item => (
+          <li key={item.href}>
+            <Link
+              to={item.href}
+              className={styles.dropdownItem}
+              onClick={() => scrollToSection(item.href)}  // ← was closeAll
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
           </ul>
         </li>
 
