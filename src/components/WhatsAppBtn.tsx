@@ -1,3 +1,4 @@
+import { FaWhatsapp } from 'react-icons/fa';
 import styles from './WhatsAppBtn.module.css';
 
 const WhatsAppBtn = () => (
@@ -8,7 +9,7 @@ const WhatsAppBtn = () => (
     rel="noopener noreferrer"
     aria-label="Chat on WhatsApp"
   >
-    💬
+    <FaWhatsapp />
   </a>
 );
 

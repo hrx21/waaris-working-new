@@ -22,7 +22,7 @@ const SERVICES = [
 const CONTACT_DETAILS = [
   { icon: '📧', label: 'Email', value: 'info@waarislegacy.com' },
   { icon: '📞', label: 'Phone', value: '+91 96531 66634' },
-  { icon: '📍', label: 'Location', value: 'Office No. 111, Ajmera Sikova, LBS Marg, Ghatkopar East' },
+  { icon: '📍', label: 'Location', value: '1212, 12th Floor, Ajmera Sikova, Nityanand Nagar, Ghatkopar West, Mumbai 400086' },
   { icon: '🕐', label: 'Working Hours', value: 'Mon – Sat: 10:00 AM – 6:00 PM' },
 ];
 
@@ -75,10 +75,10 @@ const Contact = () => {
                 </div>
               ))}
             </div>
-                        {/* MAP */}
+            {/* MAP */}
             <div className={styles.mapWrapper}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.3177198787516!2d72.91364207493041!3d19.093712751416838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c77733eccf69%3A0x741bf6a29c4a351a!2sALTPORT%20EXPERTS%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1777588162477!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.321030081064!2d72.9133946179305!3d19.093567431133007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7cc0ed1d2bd%3A0x74d07460d73f0beb!2sAjmera%20Sikova%2C%20Nityanand%20Nagar%2C%20Ghatkopar%20West%2C%20Mumbai%2C%20Maharashtra%20400086!5e0!3m2!1sen!2sin!4v1778613821968!5m2!1sen!2sin"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className={styles.map}

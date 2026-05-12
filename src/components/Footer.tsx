@@ -3,11 +3,11 @@ import styles from './Footer.module.css';
 import DarkLogo from '../assets/darklord.png';
 
 const NAV_LINKS = [
-  { label: 'About',        href: '/about'    },
-  { label: 'Services',     href: '/services' },
-  { label: 'Process',      href: '/process'  },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Process', href: '/process' },
   { label: 'Testimonials', href: '/#testimonials' },
-  { label: 'Contact',      href: '/contact'  },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const Footer = () => (
@@ -63,7 +63,7 @@ const Footer = () => (
         © {new Date().getFullYear()} Waaris Legacy Wealth Recovery LLP. All rights reserved.
       </p>
       <p className={styles.legal}>
-        SEBI Registered · Legal &amp; Compliant
+        Trusted Financial Recovery Advisors · Legal &amp; Compliant
       </p>
     </div>
 
