@@ -36,9 +36,29 @@ const Contact = () => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'db1b5451-4ad2-48ca-9987-bc1248b62d0f', // Use the same Web3Forms key
+          subject: 'New Contact Form Submission',
+          from_name: `${form.firstName} ${form.lastName}`,
+          email: form.email,
+          phone: form.phone,
+          service_required: form.service,
+          message: form.message,
+        }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong. Please try again later.');
+    }
   };
 
   return (
