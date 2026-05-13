@@ -20,7 +20,7 @@ const SERVICES = [
 ];
 
 const CONTACT_DETAILS = [
-  { icon: '📧', label: 'Email', value: 'info@waarislegacy.com' },
+  { icon: '📧', label: 'Email', value: 'advisory@waarislegacy.com' },
   { icon: '📞', label: 'Phone', value: '+91 96531 66634' },
   { icon: '📍', label: 'Location', value: '1212, 12th Floor, Ajmera Sikova, Nityanand Nagar, Ghatkopar West, Mumbai 400086' },
   { icon: '🕐', label: 'Working Hours', value: 'Mon – Sat: 10:00 AM – 6:00 PM' },

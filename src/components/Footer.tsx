@@ -43,8 +43,8 @@ const Footer = () => (
 
       {/* ── Contact block ── */}
       <div className={styles.contact}>
-        <a href="mailto:info@waarislegacy.com" className={styles.contactItem}>
-          info@waarislegacy.com
+        <a href="mailto:advisory@waarislegacy.com" className={styles.contactItem}>
+          advisory@waarislegacy.com
         </a>
         <a href="tel:+91XXXXXXXXXX" className={styles.contactItem}>
           +91 96531 66634

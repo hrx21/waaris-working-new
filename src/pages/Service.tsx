@@ -254,7 +254,7 @@ const EnquiryModal = ({
 
               {status === 'error' && (
                 <p style={{ fontSize: 13, color: '#c0392b', margin: 0 }}>
-                  Something went wrong. Email us at info@waarislegacy.com
+                  Something went wrong. Email us at advisory@waarislegacy.com
                 </p>
               )}
 
