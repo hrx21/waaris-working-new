@@ -2,6 +2,7 @@ import { useTheme } from '../context/ThemeContext';
 // import CTABanner from '../components/CTABanner';
 import styles from '../servicePage.module.css';
 import { useState } from 'react';
+import useHashScroll from '../hooks/useHashScroll';
 
 const WEB3FORMS_KEY = 'db1b5451-4ad2-48ca-9987-bc1248b62d0f'; // same key from Contact.tsx
 
@@ -270,6 +271,8 @@ const EnquiryModal = ({
 };
 
 const ServicesPage = () => {
+    useHashScroll(); // ← just this one line
+
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const [modal, setModal] = useState<ModalState>({ open: false });
