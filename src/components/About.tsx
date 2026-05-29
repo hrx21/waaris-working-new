@@ -2,9 +2,9 @@ import { useTheme } from '../context/ThemeContext';
 import styles from './About.module.css';
 
 const STATS = [
-  { num: '₹47Cr+', label: 'Wealth Recovered', exp: '8+ yrs experience' },
-  { num: '1,200+', label: 'Clients Served',   exp: 'across India' },
-  { num: '3,800+', label: 'Folios Closed',    exp: 'since inception' },
+  { num: '₹50Cr+', label: 'Wealth Recovered', exp: '4 yrs experience' },
+  { num: '100+', label: 'Clients Served', exp: 'across India' },
+  { num: '1,500+', label: 'Folios Closed', exp: 'since inception' },
 ];
 
 const PILLARS = [
@@ -80,32 +80,32 @@ const About = () => {
             forgotten shareholdings.
           </p>
 
-<div className={styles.stats}>
-  {STATS.map((s) => (
-    <div key={s.label} className={styles.stat}>
-      <span className={styles.statExp}>{s.exp}</span>
-      <span className={styles.statNum}>{s.num}</span>
-      <span className={styles.statLabel}>{s.label}</span>
-    </div>
-  ))}
-</div>
-                  {/* Vision & Mission */}
-<div className={styles.visionMission}>
-  <div className={styles.vmItem}>
-    <span className={styles.vmDot} aria-hidden="true" />
-    <div>
-      <strong className={styles.vmTitle}>Vision:</strong>
-      <span className={styles.vmText}>Restoring financial legacies to rightful heirs</span>
-    </div>
-  </div>
-  <div className={styles.vmItem}>
-    <span className={styles.vmDot} aria-hidden="true" />
-    <div>
-      <strong className={styles.vmTitle}>Mission:</strong>
-      <span className={styles.vmText}>Simplifying complex recovery processes</span>
-    </div>
-  </div>
-</div>
+          <div className={styles.stats}>
+            {STATS.map((s) => (
+              <div key={s.label} className={styles.stat}>
+                <span className={styles.statExp}>{s.exp}</span>
+                <span className={styles.statNum}>{s.num}</span>
+                <span className={styles.statLabel}>{s.label}</span>
+              </div>
+            ))}
+          </div>
+          {/* Vision & Mission */}
+          <div className={styles.visionMission}>
+            <div className={styles.vmItem}>
+              <span className={styles.vmDot} aria-hidden="true" />
+              <div>
+                <strong className={styles.vmTitle}>Vision:</strong>
+                <span className={styles.vmText}>Restoring financial legacies to rightful heirs</span>
+              </div>
+            </div>
+            <div className={styles.vmItem}>
+              <span className={styles.vmDot} aria-hidden="true" />
+              <div>
+                <strong className={styles.vmTitle}>Mission:</strong>
+                <span className={styles.vmText}>Simplifying complex recovery processes</span>
+              </div>
+            </div>
+          </div>
         </div>
 
 

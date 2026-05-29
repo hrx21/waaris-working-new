@@ -3,11 +3,10 @@ import styles from './Footer.module.css';
 import DarkLogo from '../assets/darklord.png';
 
 const NAV_LINKS = [
-  { label: 'About',        href: '/about'    },
-  { label: 'Services',     href: '/services' },
-  { label: 'Process',      href: '/process'  },
-  { label: 'Testimonials', href: '/#testimonials' },
-  { label: 'Contact',      href: '/contact'  },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Process', href: '/process' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const Footer = () => (
@@ -44,8 +43,8 @@ const Footer = () => (
 
       {/* ── Contact block ── */}
       <div className={styles.contact}>
-        <a href="mailto:info@waarislegacy.com" className={styles.contactItem}>
-          info@waarislegacy.com
+        <a href="mailto:advisory@waarislegacy.com" className={styles.contactItem}>
+          advisory@waarislegacy.com
         </a>
         <a href="tel:+91XXXXXXXXXX" className={styles.contactItem}>
           +91 96531 66634
@@ -63,7 +62,7 @@ const Footer = () => (
         © {new Date().getFullYear()} Waaris Legacy Wealth Recovery LLP. All rights reserved.
       </p>
       <p className={styles.legal}>
-        SEBI Registered · Legal &amp; Compliant
+        Trusted Financial Recovery Advisors · Legal &amp; Compliant
       </p>
     </div>
 
