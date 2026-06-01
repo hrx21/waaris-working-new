@@ -7,18 +7,17 @@ import LightLogo from '../assets/logo.jpg';
 import { Menu, X } from 'lucide-react';
 
 const ABOUT_DROPDOWN = [
-{ label: 'Our Company', href: '/about#about' },
-  // { label: 'Our Associates', href: '/about#associates' },
-{ label: 'Our Partners', href: '/about#partners' },
+  { label: 'Our Company', href: '/about#about' },
+  { label: 'Our Partners', href: '/about#partners' },
 ];
 
 const SERVICES_DROPDOWN = [
-  { label: 'IEPF Claims',                   href: '/services#iepf-claims'                },
-  { label: 'Transmission of Securities',    href: '/services#transmission-of-securities' },
-  { label: 'Duplicate Share Certificate',   href: '/services#duplicate-share-certificate'},
-  { label: 'Name Correction / Name Change', href: '/services#name-correction'            },
-  { label: 'Name Deletion',                 href: '/services#name-deletion'              },
-  { label: 'Suspense Escrow Account Claims',href: '/services#suspense-escrow'            },
+  { label: 'IEPF Claims',                    href: '/services#iepf-claims'                 },
+  { label: 'Transmission of Securities',     href: '/services#transmission-of-securities'  },
+  { label: 'Duplicate Share Certificate',    href: '/services#duplicate-share-certificate' },
+  { label: 'Name Correction / Name Change',  href: '/services#name-correction'             },
+  { label: 'Name Deletion',                  href: '/services#name-deletion'               },
+  { label: 'Suspense Escrow Account Claims', href: '/services#suspense-escrow'             },
 ];
 
 const OTHER_LINKS = [
@@ -43,6 +42,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Keep click-outside close for accessibility
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (aboutRef.current && !aboutRef.current.contains(e.target as Node))
@@ -59,45 +59,69 @@ const Navbar = () => {
     setAboutOpen(false);
     setServicesOpen(false);
   };
-  // Add this helper near the top of Navbar component
-// Replace this helper:
-const scrollToSection = (href: string) => {
-  closeAll();
-  const [, hash] = href.split('#');
-  if (!hash) return;
 
-  // If already on the right page, scroll immediately
-  const [path] = href.split('#');
-  if (window.location.pathname === path) {
-    document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-  } else {
-    // Store hash so we can scroll after navigation completes
-    sessionStorage.setItem('scrollTarget', hash);
-  }
-};
-useEffect(() => {
-  const hash = sessionStorage.getItem('scrollTarget');
-  if (hash) {
-    sessionStorage.removeItem('scrollTarget');
-    // Small delay lets the page mount and render
-    setTimeout(() => {
+  const scrollToSection = (href: string) => {
+    closeAll();
+    const [path, hash] = href.split('#');
+    if (!hash) return;
+    if (window.location.pathname === path) {
       document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  }
-}, []); // runs once on every page mount
+    } else {
+      sessionStorage.setItem('scrollTarget', hash);
+    }
+  };
+
+  useEffect(() => {
+    const hash = sessionStorage.getItem('scrollTarget');
+    if (hash) {
+      sessionStorage.removeItem('scrollTarget');
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, []);
+
+  const aboutTimerRef    = useRef<ReturnType<typeof setTimeout> | null>(null);
+const servicesTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+// About handlers
+const handleAboutEnter = () => {
+  if (aboutTimerRef.current) clearTimeout(aboutTimerRef.current);
+  setAboutOpen(true);
+  setServicesOpen(false);
+};
+const handleAboutLeave = () => {
+  aboutTimerRef.current = setTimeout(() => setAboutOpen(false), 150);
+};
+
+// Services handlers
+const handleServicesEnter = () => {
+  if (servicesTimerRef.current) clearTimeout(servicesTimerRef.current);
+  setServicesOpen(true);
+  setAboutOpen(false);
+};
+const handleServicesLeave = () => {
+  servicesTimerRef.current = setTimeout(() => setServicesOpen(false), 150);
+};
+
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
 
       {/* Logo */}
       <Link to="/" className={styles.logo}>
-        <img src={LightLogo} alt="Waaris Legacy" className={styles.logoImg} />
+        <img src={LightLogo} alt="Waaris Legacy" className={styles.logoImg} style={{ width: '150px', height: 'auto', flexShrink: 0 }} />
       </Link>
 
       {/* Links */}
       <ul className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
 
         {/* About Dropdown */}
-        <li ref={aboutRef} className={styles.dropdownParent}>
+        <li
+          ref={aboutRef}
+          className={styles.dropdownParent}
+          onMouseEnter={handleAboutEnter}
+          onMouseLeave={handleAboutLeave}
+        >
           <button
             className={styles.dropdownTrigger}
             onClick={() => { setAboutOpen(o => !o); setServicesOpen(false); }}
@@ -109,22 +133,27 @@ useEffect(() => {
             />
           </button>
           <ul className={`${styles.dropdown} ${aboutOpen ? styles.show : ''}`}>
-          {ABOUT_DROPDOWN.map(item => (
-            <li key={item.href}>
-              <Link
-                to={item.href}
-                className={styles.dropdownItem}
-                onClick={() => scrollToSection(item.href)}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
+            {ABOUT_DROPDOWN.map(item => (
+              <li key={item.href}>
+                <Link
+                  to={item.href}
+                  className={styles.dropdownItem}
+                  onClick={() => scrollToSection(item.href)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </li>
 
         {/* Services Dropdown */}
-        <li ref={servicesRef} className={styles.dropdownParent}>
+        <li
+          ref={servicesRef}
+          className={styles.dropdownParent}
+          onMouseEnter={handleServicesEnter}
+          onMouseLeave={handleServicesLeave}
+        >
           <button
             className={styles.dropdownTrigger}
             onClick={() => { setServicesOpen(o => !o); setAboutOpen(false); }}
@@ -136,17 +165,17 @@ useEffect(() => {
             />
           </button>
           <ul className={`${styles.dropdown} ${servicesOpen ? styles.show : ''}`}>
-        {SERVICES_DROPDOWN.map(item => (
-          <li key={item.href}>
-            <Link
-              to={item.href}
-              className={styles.dropdownItem}
-              onClick={() => scrollToSection(item.href)}  // ← was closeAll
-            >
-              {item.label}
-            </Link>
-          </li>
-        ))}
+            {SERVICES_DROPDOWN.map(item => (
+              <li key={item.href}>
+                <Link
+                  to={item.href}
+                  className={styles.dropdownItem}
+                  onClick={() => scrollToSection(item.href)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </li>
 
