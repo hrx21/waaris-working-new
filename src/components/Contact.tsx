@@ -84,17 +84,18 @@ const Contact = () => {
 
 
             {/* 🔥 GRID CONTACT INFO */}
-            <div className={styles.infoGrid}>
-              {CONTACT_DETAILS.map(d => (
-                <div key={d.label} className={styles.infoItem}>
-                  <div className={styles.detailIcon}>{d.icon}</div>
-                  <div>
-                    <p className={styles.label}>{d.label}</p>
-                    <p>{d.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+{/* CONTACT INFO */}
+<div className={styles.infoGrid}>
+  {CONTACT_DETAILS.map(d => (
+    <div key={d.label} className={styles.infoItem}>
+      <div className={styles.detailIcon}>{d.icon}</div>
+      <div className={styles.detailText}>
+        <p className={styles.label}>{d.label}</p>
+        <p className={styles.value}>{d.value}</p>
+      </div>
+    </div>
+  ))}
+</div>
             {/* MAP */}
             <div className={styles.mapWrapper}>
               <iframe
