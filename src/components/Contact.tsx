@@ -123,23 +123,23 @@ const Contact = () => {
                 <div className={styles.row}>
                   <div className={styles.group}>
                     <label htmlFor="firstName">First Name</label>
-                    <input id="firstName" name="firstName" type="text" placeholder="Ramesh" value={form.firstName} onChange={handleChange} required />
+                    <input id="firstName" name="firstName" type="text" value={form.firstName} onChange={handleChange} required />
                   </div>
 
                   <div className={styles.group}>
                     <label htmlFor="lastName">Last Name</label>
-                    <input id="lastName" name="lastName" type="text" placeholder="Iyer" value={form.lastName} onChange={handleChange} required />
+                    <input id="lastName" name="lastName" type="text" value={form.lastName} onChange={handleChange} required />
                   </div>
                 </div>
 
                 <div className={styles.group}>
                   <label htmlFor="email">Email Address</label>
-                  <input id="email" name="email" type="email" placeholder="ramesh@example.com" value={form.email} onChange={handleChange} required />
+                  <input id="email" name="email" type="email" value={form.email} onChange={handleChange} required />
                 </div>
 
                 <div className={styles.group}>
                   <label htmlFor="phone">Phone Number</label>
-                  <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" value={form.phone} onChange={handleChange} required />
+                  <input id="phone" name="phone" type="tel" value={form.phone} onChange={handleChange} required />
                 </div>
 
                 <div className={styles.group}>
