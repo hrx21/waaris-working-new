@@ -43,7 +43,7 @@ const Contact = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'db1b5451-4ad2-48ca-9987-bc1248b62d0f', // Use the same Web3Forms key
+          access_key: '5363c3e5-73b3-4a1f-b017-de7897d407aa', // Use the same Web3Forms key
           subject: 'New Contact Form Submission',
           from_name: `${form.firstName} ${form.lastName}`,
           email: form.email,
