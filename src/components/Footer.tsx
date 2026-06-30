@@ -46,7 +46,7 @@ const Footer = () => (
         <a href="mailto:advisory@waarislegacy.com" className={styles.contactItem}>
           advisory@waarislegacy.com
         </a>
-        <a href="tel:+91XXXXXXXXXX" className={styles.contactItem}>
+        <a href="tel:+919653166634" className={styles.contactItem}>
           +91 96531 66634
         </a>
         <p className={styles.contactItem} style={{ cursor: 'default' }}>
